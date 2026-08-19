@@ -1,22 +1,23 @@
 # Library Dashboard
 
-This a mini library project to track borrowed books and calculate late fees automatically. it has a backend (express) and a frontend (react + vite). 
+This a mini library project to track borrowed books and calculate late fees automatically. it has a backend (express) and a frontend (react + vite).
 
+## What it does
 
-add books that people have borrowed (title, person name, checkout date)
-shows all books with due date (7 days from checkout)
-tells you if a book is:
-    safe (still time left)
-    due tomorrow
-    overdue
-calculates penalty for late returns:
-   first 3 days late: $1/day
-   after that: $2/day
-   max penalty: $15
+- Add books that people have borrowed (title, person name, checkout date)
+- Shows all books with due date (7 days from checkout)
+- Tells you if a book is:
+  - safe (still time left)
+  - due tomorrow
+  - overdue
+- Calculates penalty for late returns:
+  - first 3 days late: $1/day
+  - after that: $2/day
+  - max penalty: $15
 
+## Project Structure
 
-# project structure
-
+```
 .mini_library/
 ├── backend/          # express API server
 │   ├── index.js      # server setup
@@ -33,34 +34,34 @@ calculates penalty for late returns:
 
 ---
 
+## How to run locally
 
-
-### step 1: backend
+### Step 1: Backend
 ```bash
 cd backend
 npm install
 npm start
 ```
-server runs on http://localhost:4000
+Server runs on http://localhost:4000
 
-
-###step 2: front end
-open a new terminal tab/window:
+### Step 2: Front end
+Open a new terminal tab/window:
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
+Frontend runs on whatever port vite gives u (usually 5173)
 
+---
 
-frontend runs on whatever port vite gives u (usually 5173)
-###API Endpoints
+## API Endpoints
 
 ### POST `/api/books`
-add a new borrowed book
+Add a new borrowed book
 
-body:
+Body:
 ```json
 {
   "title": "The Great Gatsby",
@@ -69,12 +70,12 @@ body:
 }
 ```
 
-returns: 201 with the book object + id
+Returns: 201 with the book object + id
 
 ### GET `/api/books`
-gets all books with extra info calculated
+Gets all books with extra info calculated
 
-returns array of:
+Returns array of:
 ```json
 {
   "id": 1,
@@ -87,11 +88,11 @@ returns array of:
 }
 ```
 
-status can be: `safe`, `dueTomorrow`, or `overdue`
+Status can be: `safe`, `dueTomorrow`, or `overdue`
 
 ---
 
-##  note
+## Note
 
 - the backend uses in-memory storage (just an array). so if u restart the server, all books are GONE.
 - penalty resets every day based on current date. its calculated when u GET the books, not stored.
@@ -101,5 +102,5 @@ status can be: `safe`, `dueTomorrow`, or `overdue`
 
 ## AI disclosure
 
-Used ClaudeAI for UI and Deployment Purposes 
+Used ClaudeAI for UI and Deployment Purposes
 
