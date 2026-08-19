@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { fetchBooks, addBook } from './api';
 import AddBookForm from './AddBookForm';
-import BookCard from './BookCard';
+import BookCard from './Bookcard';
 import './App.css';
 
 function App() {
