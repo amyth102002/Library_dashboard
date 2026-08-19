@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --ink: #1c1c1a;
+  --ink-soft: #6b6a63;
+  --paper: #faf9f6;
+  --line: #e3e1da;
+  --safe: #4a7a5c;
+  --warn: #b8863c;
+  --overdue: #a6432f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 6rem;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+.app > h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: 2.25rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.25rem;
+}
+
+.app > h1::after {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--ink);
+  margin-top: 1rem;
+}
+
+.app > h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+  margin: 3rem 0 1.25rem;
+  color: var(--ink);
+}
+.add-book-form {
+  border: none;
+  border-top: 1px solid var(--line);
+  padding: 2rem 0 0;
+  margin-bottom: 0;
+}
+.add-book-form h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+.form-row label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin-bottom: 0.4rem;
+}
+
+.form-row input {
+  font-family: inherit;
+  padding: 0.55rem 0;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  font-size: 0.95rem;
+  color: var(--ink);
+  border-radius: 0;
+  transition: border-color 0.15s ease;
+}
+
+.form-row input:focus {
+  outline: none;
+  border-bottom-color: var(--ink);
+}
+
+.form-row input::placeholder {
+  color: #b9b7ae;
+}
+
+.add-book-form button {
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  padding: 0.65rem 1.5rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 0;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.add-book-form button:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+.add-book-form button:disabled {
+  background: var(--ink-soft);
+  cursor: not-allowed;
+}
+
+.form-error {
+  color: var(--overdue);
+  font-size: 0.8rem;
+  margin: -0.5rem 0 1rem;
+}
+
+
+.book-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-card {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr auto;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+}
+
+.book-grid .book-card:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.book-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin: 0;
+  grid-column: 1;
+}
+
+.book-card h3 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+  color: var(--ink);
+}
+
+.status-badge {
+  font-size: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  padding: 0;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px currentColor;
+  opacity: 1;
+}
+
+.status-badge::after {
+  content: attr(data-label);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-left: 1rem;
+  white-space: nowrap;
+}
+
+.book-meta {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.penalty-amount {
+  margin: 0;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.card-safe .status-badge { background: var(--safe); color: color-mix(in srgb, var(--safe) 25%, transparent); }
+.card-safe .status-badge::after { color: var(--safe); }
+
+.card-due-tomorrow .status-badge { background: var(--warn); color: color-mix(in srgb, var(--warn) 25%, transparent); }
+.card-due-tomorrow .status-badge::after { color: var(--warn); }
+
+.card-overdue .status-badge { background: var(--overdue); color: color-mix(in srgb, var(--overdue) 25%, transparent); }
+.card-overdue .status-badge::after { color: var(--overdue); }
+.card-overdue .penalty-amount { color: var(--overdue); }
+
+@media (max-width: 560px) {
+  .book-card {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+  .penalty-amount {
+    text-align: left;
+  }
+}
